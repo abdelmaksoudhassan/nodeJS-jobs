@@ -37,7 +37,7 @@ User.init({
             },
             len:{
                 args: [8,15],
-                msg: 'password must be from 6 to 15 digits'
+                msg: 'password must be from 8 to 15 digits'
             },
             notNull:{
                 msg: 'password is required'
