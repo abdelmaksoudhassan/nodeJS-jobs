@@ -56,8 +56,8 @@ User.init({
                 msg: 'first name supports only letters'
             },
             len: {
-                args: [3,10],
-                msg: 'first name must be 3-10 letters'
+                args: [3,20],
+                msg: 'first name must be 3-20 letters'
             },
             notEmpty:{
                 msg: 'first name can\t be empty'
@@ -75,8 +75,8 @@ User.init({
                 msg: 'last name supports only letters'
             },
             len: {
-                args: [3,10],
-                msg: 'last name must be 3-10 letters'
+                args: [3,20],
+                msg: 'last name must be 3-20 letters'
             },
             notEmpty:{
                 msg: 'last name can\t be empty'
@@ -99,12 +99,12 @@ User.init({
         type: INTEGER,
         validate:{
             max: {
-                args:[60],
-                msg:'max age is 60'
+                args:[80],
+                msg:'max age is 80'
             },
             min: {
-                args:[20],
-                msg:'min age is 20'
+                args:[18],
+                msg:'min age is 18'
             },
             isInt:{
                 msg: 'age supports numbers only'
