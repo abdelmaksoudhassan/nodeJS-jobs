@@ -40,7 +40,7 @@ const login = async (request,response,next) => {
             })
         }
         const token = await user.generateToken()
-        response.setHeader('Authorization',token).json(user)
+        response.setHeader('Token',token).json(user)
         next()
     }catch(err){
         response.status(401).json(err)
