@@ -30,7 +30,7 @@ const Job = sequelize.define('job',{
         }
     },
     body:{
-        type: STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull: false,
         validate:{
             len: {
