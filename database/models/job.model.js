@@ -29,6 +29,22 @@ const Job = sequelize.define('job',{
             },
         }
     },
+    body:{
+        type: STRING,
+        allowNull: false,
+        validate:{
+            len: {
+                args: [20,200],
+                msg: 'body must be 20-200 letters'
+            },
+            notEmpty:{
+                msg: 'body can\t be empty'
+            },
+            notNull:{
+                msg: 'body is required'
+            },
+        }
+    },
     requirements:{
         type: Sequelize.DataTypes.TEXT,
         allowNull: false,
