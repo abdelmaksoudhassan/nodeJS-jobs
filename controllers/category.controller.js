@@ -8,7 +8,7 @@ const getCategories = (request,response,next) => {
             response.status(500).json(err)
         })
 }
-const postCategory = (request,response,next) =>{
+const postCategory = async (request,response,next) =>{
     const user = request.user
     if(! user.admin){
         return response.status(401).json({
@@ -16,22 +16,23 @@ const postCategory = (request,response,next) =>{
         })
     }
     const {title} = request.body
-    const found = await Category.findOne({where:{title:title}})
-    if(found){
-        return response.status(406).send({
-            message: 'duplicated category title'
-        })
-    }
-    const category = new Category({title})
-    category.save().then(doc=>{
-        response.json(doc)
-        next()
-    }).catch(err=>{
+    try{
+            const found = await Category.findOne({where:{title:title}})
+            if(found){
+                return response.status(406).send({
+                    message: 'duplicated category title'
+                })
+            }
+            const category = new Category({title})
+            await category.save()
+            response.json(category)
+            next()
+    }catch(err){
         if(err.errors){
             return response.status(406).send(mapError(err))
         }
         response.status(500).send(err)
-    })
+    }
 }
 const editCategory = async (request,response,next) => {
     const user = request.user
