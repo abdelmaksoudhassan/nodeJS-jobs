@@ -16,6 +16,12 @@ const postCategory = (request,response,next) =>{
         })
     }
     const {title} = request.body
+    const found = await Category.findOne({where:{title:title}})
+    if(found){
+        return response.status(406).send({
+            message: 'duplicated category title'
+        })
+    }
     const category = new Category({title})
     category.save().then(doc=>{
         response.json(doc)
