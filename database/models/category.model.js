@@ -11,6 +11,7 @@ const Category = sequelize.define('category',{
     title:{
         type:Sequelize.DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate:{
             len: {
                 args: [3,10],
