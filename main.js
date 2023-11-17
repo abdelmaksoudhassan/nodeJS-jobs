@@ -5,6 +5,7 @@ const sequelize = require('./database/connection')
 const userRouter = require('./routers/user.router')
 const categoryRouter = require('./routers/category.router')
 const jobsRouter = require('./routers/jobs.router')
+const User = require('./database/models/user.model')
 
 require('dotenv').config({ path:'./vars.env' })
 
@@ -30,8 +31,22 @@ app.get('/',(req,res,next)=>{
     res.send('welcome from server')
 })
 
-sequelize.sync().then(() => {
+sequelize.sync({force: true}).then(() => {
+// sequelize.sync().then(() => {
     console.log('database connected')
+    return User.findAll()
+}).then(users=>{
+    if(users.length == 0){
+        return User.create({
+            firstName:"new",
+            lastName:"admin",
+            email:"newadmin@gmail.com",
+            password:"123456",
+            age: 20
+        })
+    }else{
+        return admins
+    }
 }).then(()=>{
     app.listen(port,()=>{
         console.log(`server up on port ${port}`)
