@@ -4,9 +4,9 @@ const Category = require('../database/models/category.model')
 const {mapError} = require('../helpers/helpers')
 
 const postJob = (request,response,next) =>{
-    const {gender,title,requirements,type,salary,categoryId} = request.body
+    const {gender,title,body,requirements,type,salary,categoryId} = request.body
     const user = request.user
-    user.createJob({gender,title,requirements,type,salary,categoryId}).then(doc=>{
+    user.createJob({gender,title,body,requirements,type,salary,categoryId}).then(doc=>{
         response.status(201).json(doc)
         next()
     }).catch(err=>{
