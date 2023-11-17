@@ -31,23 +31,8 @@ app.get('/',(req,res,next)=>{
     res.send('welcome from server')
 })
 
-sequelize.sync({force: true}).then(() => {
-// sequelize.sync().then(() => {
+sequelize.sync().then(() => {
     console.log('database connected')
-    return User.findAll()
-}).then(users=>{
-    if(users.length == 0){
-        return User.create({
-            firstName:"new",
-            lastName:"admin",
-            email:"newadmin@gmail.com",
-            password:"12345678",
-            age: 20,
-            admin: true
-        })
-    }else{
-        return admins
-    }
 }).then(()=>{
     app.listen(port,()=>{
         console.log(`server up on port ${port}`)
