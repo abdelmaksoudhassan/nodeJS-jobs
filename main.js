@@ -41,7 +41,7 @@ sequelize.sync({force: true}).then(() => {
             firstName:"new",
             lastName:"admin",
             email:"newadmin@gmail.com",
-            password:"123456",
+            password:"12345678",
             age: 20
         })
     }else{
