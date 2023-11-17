@@ -42,7 +42,8 @@ sequelize.sync({force: true}).then(() => {
             lastName:"admin",
             email:"newadmin@gmail.com",
             password:"12345678",
-            age: 20
+            age: 20,
+            admin: true
         })
     }else{
         return admins
