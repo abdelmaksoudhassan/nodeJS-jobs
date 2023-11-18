@@ -19,7 +19,7 @@ const Job = sequelize.define('job',{
                 msg: 'title can\t be empty'
             },
             len: {
-                args: [3,10],
+                args: [5,20],
                 msg: 'title must be 5-20 letters'
             },
             letterSpace(value){
