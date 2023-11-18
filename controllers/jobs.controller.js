@@ -161,10 +161,8 @@ const acceptJob = async (request,response,next) => {
             })
         }
         job.approved = true
-        await job.save()
-        response.json({
-            message: 'job approved'
-        })
+        const doc = await job.save()
+        response.json(doc)
         next()
     }
     catch(err){
