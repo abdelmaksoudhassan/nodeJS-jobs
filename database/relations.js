@@ -4,7 +4,7 @@ const Job = require('./models/job.model')
 const ClientJob = require('./models/client-job.model')
 const category = require('./models/category.model')
 
-User.hasOne(ExtraData)
+User.hasOne(ExtraData,{constraints:true,onDelete:'CASCADE'})
 ExtraData.belongsTo(User, { constraints:true, onDelete:"CASCADE" })
 
 User.hasMany(Job);
@@ -16,5 +16,5 @@ Job.belongsToMany(User,{through:ClientJob,constraints:true,onDelete:'CASCADE'})
 category.hasMany(Job,{constraints:true,onDelete:'CASCADE'});
 Job.belongsTo(category,{ constraints: true,onDelete:'CASCADE'})
 
-category.hasMany(ExtraData,{constraints:true,onDelete:'CASCADE'});
+category.hasMany(ExtraData);
 ExtraData.belongsTo(category,{ constraints: true,onDelete:'CASCADE'})
