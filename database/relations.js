@@ -4,8 +4,8 @@ const Job = require('./models/job.model')
 const ClientJob = require('./models/client-job.model')
 const category = require('./models/category.model')
 
-User.hasOne(ExtraData,{constraints:true,onDelete:'CASCADE'})
-ExtraData.belongsTo(User, { constraints:true, onDelete:"CASCADE" })
+ExtraData.hasOne(User,{constraints:true,onDelete:'CASCADE'})
+User.belongsTo(ExtraData, { constraints:true, onDelete:"CASCADE" })
 
 User.hasMany(Job);
 Job.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
