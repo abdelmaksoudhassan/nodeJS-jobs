@@ -31,7 +31,7 @@ app.get('/',(req,res,next)=>{
     res.send('welcome from server')
 })
 
-sequelize.sync().then(() => {
+sequelize.sync({force:true}).then(() => {
     console.log('database connected')
 }).then(()=>{
     app.listen(port,()=>{
