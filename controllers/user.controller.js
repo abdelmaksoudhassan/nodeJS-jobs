@@ -172,9 +172,13 @@ const updateEmail = async (request,response,next) => {
 }
 const updatePassword = async (request,response,next) => {
     const {oldPassword,newPassword} = request.body
+    console.log(oldPassword,newPassword)
     const user = request.user
+    console.log(user)
     try{
-        if(! await user.comparePassword(oldPassword)){
+        const same = await user.comparePassword(oldPassword)
+        console.log(same)
+        if(! same){
             return response.status(401).json({
                 message: 'wrong password'
             })
