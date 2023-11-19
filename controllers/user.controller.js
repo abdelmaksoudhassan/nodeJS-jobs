@@ -251,13 +251,12 @@ const completeData = (request,response,next) => {
             })
         }
         try{
-            // const {specialty} = request.body
-            const userExtraData = new ExtraData({cv: request.file.path,UserId: user.id,categoryId: 1})
+            const {specialty} = request.body
+            const userExtraData = new ExtraData({cv: request.file.path,UserId: user.id,categoryId: specialty})
             await userExtraData.save()
             response.json(userExtraData)
             next()
         }catch(err){
-            console.log(err)
             deleteFile(request.file.path)
             if(err.errors){
                 return response.status(406).send(mapError(err))
