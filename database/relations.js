@@ -15,3 +15,6 @@ Job.belongsToMany(User,{through:ClientJob,constraints:true,onDelete:'CASCADE'})
 
 category.hasMany(Job,{constraints:true,onDelete:'CASCADE'});
 Job.belongsTo(category,{ constraints: true,onDelete:'CASCADE'})
+
+category.hasMany(ExtraData,{constraints:true,onDelete:'CASCADE'});
+ExtraData.belongsTo(category,{ constraints: true,onDelete:'CASCADE'})
