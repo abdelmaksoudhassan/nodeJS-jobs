@@ -225,6 +225,7 @@ const uploadCV = (request,response,next) => {
             })
             next()
         }catch(err){
+            console.log(err)
             deleteFile(request.file.path)
             response.status(500).send(err)
         }
