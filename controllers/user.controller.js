@@ -118,7 +118,10 @@ const uploadAvatar = (request,response,next) => {
             if(oldImage){
                 deleteFile(oldImage)
             }
-            response.json(doc)
+            response.json({
+                message: 'avatar updated',
+                cv: updated.avatar
+            })
             next()
         }).catch(e=>{
             deleteFile(request.file.path)
@@ -156,10 +159,7 @@ const updateEmail = async (request,response,next) => {
         }
         user.email = email
         const updated = await user.save()
-        response.json({
-            message: 'avatar updated',
-            cv: updated.avatar
-        })
+        response.json(updated)
         next()
     }
     catch(err){
@@ -225,7 +225,6 @@ const uploadCV = (request,response,next) => {
             })
             next()
         }catch(err){
-            console.log(err)
             deleteFile(request.file.path)
             response.status(500).send(err)
         }
