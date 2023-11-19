@@ -4,14 +4,14 @@ const {avatarUploader,cvUploader,deleteFile} = require('../multer/multer.setting
 const {mapError} = require('../helpers/helpers')
 
 const signup = async (request,response,next) => {
-    const {email,password,firstName,lastName,age,specialty} = request.body
+    const {email,password,firstName,lastName,age} = request.body
     const found = await User.findOne({where:{email:email}})
     if(found){
         return response.status(406).send({
             message: 'duplicated email'
         })
     }
-    const user = new User({firstName,lastName,age,email,password,specialty})
+    const user = new User({firstName,lastName,age,email,password})
     user.save().then(()=>{
         response.json({
             message: 'registered successfully'
