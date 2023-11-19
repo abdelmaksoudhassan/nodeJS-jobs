@@ -256,7 +256,11 @@ const completeData = (request,response,next) => {
             response.json(userExtraData)
             next()
         }catch(err){
+            console.log(err)
             deleteFile(request.file.path)
+            if(err.errors){
+                return response.status(406).send(mapError(err))
+            }
             response.status(500).send(err)
         }
     })
