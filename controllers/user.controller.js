@@ -230,6 +230,37 @@ const uploadCV = (request,response,next) => {
             response.status(500).send(err)
         }
     })
+},
+const completeData = (request,response,next) => {
+    const user = request.user
+    if(user.admin){
+        return response.status(406).send({
+            message: 'admins not allowed for this request'
+        })
+    }
+    cvUploader(request,response,async (err)=>{
+        if (err) {
+            return response.status(400).json({
+                message: 'invalid file',
+                error: err
+            })
+        }
+        if(! request.file){
+            return response.status(422).json({
+                message: 'image must be choosen'
+            })
+        }
+        try{
+            const {specialty} = request.body
+            const userExtraData = new ExtraData({cv: request.file.path,categoryId: specialty})
+            await userExtraData.save()
+            response.json(userExtraData)
+            next()
+        }catch(err){
+            deleteFile(request.file.path)
+            response.status(500).send(err)
+        }
+    })
 }
 module.exports = {
     makeAdmin,
@@ -240,5 +271,6 @@ module.exports = {
     uploadCV,
     updateInfo,
     updateEmail,
-    updatePassword
+    updatePassword,
+    completeData
 }
