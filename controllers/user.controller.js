@@ -156,7 +156,10 @@ const updateEmail = async (request,response,next) => {
         }
         user.email = email
         const updated = await user.save()
-        response.json(updated)
+        response.json({
+            message: 'avatar updated',
+            cv: updated.avatar
+        })
         next()
     }
     catch(err){
@@ -204,22 +207,27 @@ const uploadCV = (request,response,next) => {
             })
         }
         if(! request.file){
-            response.status(422).json({
+            return response.status(422).json({
                 message: 'image must be choosen'
             })
         }
-        const userExtraData = await ExtraData.findOne({where:{userId:user.id}})
-        const oldCv = userExtraData.cv
-        userExtraData.cv = request.file.path
-        await userExtraData.save()
-        if(oldCv){
-            deleteFile(oldCv)
+        try{
+            const userExtraData = await ExtraData.findOne({where:{userId:user.id}})
+            const oldCv = userExtraData.cv
+            userExtraData.cv = request.file.path
+            await userExtraData.save()
+            if(oldCv){
+                deleteFile(oldCv)
+            }
+            response.send({
+                message: 'cv updated',
+                cv: userExtraData.cv
+            })
+            next()
+        }catch(err){
+            deleteFile(request.file.path)
+            response.status(500).send(err)
         }
-        response.send({
-            message: 'cv updated',
-            cv: userExtraData.cv
-        })
-        next()
     })
 }
 module.exports = {
