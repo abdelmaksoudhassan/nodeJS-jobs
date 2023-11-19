@@ -230,7 +230,7 @@ const uploadCV = (request,response,next) => {
             response.status(500).send(err)
         }
     })
-},
+}
 const completeData = (request,response,next) => {
     const user = request.user
     if(user.admin){
