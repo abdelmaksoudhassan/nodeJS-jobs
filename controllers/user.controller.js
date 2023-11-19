@@ -251,8 +251,8 @@ const completeData = (request,response,next) => {
             })
         }
         try{
-            const {specialty} = request.body
-            const userExtraData = new ExtraData({cv: request.file.path,UserId: user.id,categoryId: specialty})
+            // const {specialty} = request.body
+            const userExtraData = new ExtraData({cv: request.file.path,UserId: user.id,categoryId: 1})
             await userExtraData.save()
             response.json(userExtraData)
             next()
