@@ -163,6 +163,7 @@ const updateEmail = async (request,response,next) => {
         next()
     }
     catch(err){
+        console.log(err)
         if(err.errors){
             return response.status(406).send(mapError(err))
         }
@@ -186,6 +187,7 @@ const updatePassword = async (request,response,next) => {
         next()
     }
     catch(err){
+        console.log(err)
         if(err.errors){
             return response.status(406).send(mapError(err))
         }
