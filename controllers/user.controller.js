@@ -212,7 +212,7 @@ const uploadCV = (request,response,next) => {
             })
         }
         try{
-            const userExtraData = await ExtraData.findOne({where:{userId:user.id}})
+            const userExtraData = await ExtraData.findOne({where:{UserId:user.id}})
             const oldCv = userExtraData.cv
             userExtraData.cv = request.file.path
             await userExtraData.save()
