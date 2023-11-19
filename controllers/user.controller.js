@@ -120,7 +120,7 @@ const uploadAvatar = (request,response,next) => {
             }
             response.json({
                 message: 'avatar updated',
-                avatar: updated.avatar
+                avatar: request.file.path
             })
             next()
         }).catch(e=>{
