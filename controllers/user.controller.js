@@ -284,10 +284,14 @@ const profile = async (request,response,next) => {
                 message: `user with id ${id} not found`
             })
         }
-        const extraData = await ExtraData.findOne({where:{UserId:user.id}})
+        const extraData = await ExtraData.findOne({
+            where:{ UserId: user.id },
+            { include:[{model: Category}] }
+        })
         response.status(200).json({user,extraData})
         next()
     }catch(err){
+        console.log(err)
         response.status(500).json(err)
     }
 }
