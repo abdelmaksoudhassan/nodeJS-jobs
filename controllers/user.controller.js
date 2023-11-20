@@ -275,6 +275,22 @@ const completeData = (request,response,next) => {
         }
     })
 }
+const profile = async (request,response,next) => {
+    const {id} = request.params
+    try{
+        const user = await User.findByPk(id)
+        if(! user){
+            return response.status(404).send({
+                message: `user with id ${id} not found`
+            })
+        }
+        const extraData = await ExtraData.findOne({where:{UserId:user.id}})
+        response.status(200).json({user,extraData})
+        next()
+    }catch(err){
+        response.status(401).json(err)
+    }
+}
 module.exports = {
     makeAdmin,
     signup,
@@ -285,5 +301,6 @@ module.exports = {
     updateInfo,
     updateEmail,
     updatePassword,
-    completeData
+    completeData,
+    profile
 }
