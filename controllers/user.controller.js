@@ -48,6 +48,7 @@ const login = async (request,response,next) => {
         }
         next()
     }catch(err){
+        console.log(err)
         response.status(401).json(err)
     }
 }
@@ -74,6 +75,7 @@ const autoLogin = async (req,res,next) =>{
         next()
     }
     catch(e){
+        console.log(e)
         res.status(500).json(e)
     }
 }
