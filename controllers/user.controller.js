@@ -1,5 +1,6 @@
 const User = require('../database/models/user.model')
 const ExtraData = require('../database/models/extra-data.model')
+const Category = require('../database/models/category.model')
 const {avatarUploader,cvUploader,deleteFile} = require('../multer/multer.setting')
 const {mapError} = require('../helpers/helpers')
 
