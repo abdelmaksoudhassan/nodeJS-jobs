@@ -31,8 +31,10 @@ app.get('/',(req,res,next)=>{
     res.send('welcome from server')
 })
 
-sequelize.sync({force:true}).then(() => {
+// sequelize.sync({force:true}).then(() => {
+sequelize.sync().then(() => {
     console.log('database connected')
+    // return User.create({firstName:'ahmed',lastName:'hassan',admin:true,age:25,email:'new_admin@gmail.com',password:'12345678'})
 }).then(()=>{
     app.listen(port,()=>{
         console.log(`server up on port ${port}`)

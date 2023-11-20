@@ -40,7 +40,12 @@ const login = async (request,response,next) => {
             })
         }
         const token = await user.generateToken()
-        response.status(200).json({user,token})
+        if(user.admin){
+            response.status(200).json({user,token})
+        }else{
+            const extraData = await ExtraData.findOne({where:{UserId: user.id}})
+            response.status(200).json({user,extraData,token})
+        }
         next()
     }catch(err){
         response.status(401).json(err)
@@ -60,7 +65,12 @@ const autoLogin = async (req,res,next) =>{
                 message: 'expired token'
             })
         }
-        res.json(user)
+        if(user.admin){
+            response.status(200).json(user)
+        }else{
+            const extraData = await ExtraData.findOne({where:{UserId: user.id}})
+            response.status(200).json({user,extraData})
+        }
         next()
     }
     catch(e){
