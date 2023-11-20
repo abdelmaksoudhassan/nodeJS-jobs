@@ -288,7 +288,7 @@ const profile = async (request,response,next) => {
         response.status(200).json({user,extraData})
         next()
     }catch(err){
-        response.status(401).json(err)
+        response.status(500).json(err)
     }
 }
 module.exports = {
