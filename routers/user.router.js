@@ -13,5 +13,6 @@ userRouter.patch('/update-info',authMW,userController.updateInfo)
 userRouter.patch('/update-password',authMW,userController.updatePassword)
 userRouter.post('/avatar',authMW,userController.uploadAvatar)
 userRouter.post('/cv',authMW,userController.uploadCV)
+userRouter.get('/profile/:id',userController.profile)
 
 module.exports = userRouter
