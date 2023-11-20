@@ -209,7 +209,7 @@ const getAppliers = async (request,response,next) => {
                 message: `job with id ${id} not found`
             })
         }
-        const appliers = await job.getUsers({attributes:{exclude:['user_job']}})
+        const appliers = await job.getUsers({joinTableAttributes: []})
         response.json(appliers)
         next()
     }
