@@ -286,7 +286,7 @@ const profile = async (request,response,next) => {
         }
         const extraData = await ExtraData.findOne({
             where:{ UserId: user.id },
-            { include:[{model: Category}] }
+            include:[{model: Category}]
         })
         response.status(200).json({user,extraData})
         next()
