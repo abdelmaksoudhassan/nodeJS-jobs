@@ -48,7 +48,6 @@ const login = async (request,response,next) => {
         }
         next()
     }catch(err){
-        console.log(err)
         response.status(401).json(err)
     }
 }
@@ -67,15 +66,14 @@ const autoLogin = async (req,res,next) =>{
             })
         }
         if(user.admin){
-            response.status(200).json(user)
+            res.status(200).json(user)
         }else{
             const extraData = await ExtraData.findOne({where:{UserId: user.id}})
-            response.status(200).json({user,extraData})
+            res.status(200).json({user,extraData})
         }
         next()
     }
     catch(e){
-        console.log(e)
         res.status(500).json(e)
     }
 }
