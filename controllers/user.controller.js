@@ -44,7 +44,10 @@ const login = async (request,response,next) => {
         if(user.admin){
             response.status(200).json({user,token})
         }else{
-            const extraData = await ExtraData.findOne({where:{UserId: user.id}})
+            const extraData = await ExtraData.findOne({
+                where:{UserId: user.id},
+                include:[{model: Category}]
+            })
             response.status(200).json({user,extraData,token})
         }
         next()
@@ -69,7 +72,10 @@ const autoLogin = async (req,res,next) =>{
         if(user.admin){
             res.status(200).json(user)
         }else{
-            const extraData = await ExtraData.findOne({where:{UserId: user.id}})
+            const extraData = await ExtraData.findOne({
+                where:{UserId: user.id},
+                include:[{model: Category}]
+            })
             res.status(200).json({user,extraData})
         }
         next()
