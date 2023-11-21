@@ -302,6 +302,14 @@ const profile = async (request,response,next) => {
         response.status(500).json(err)
     }
 }
+const getAdmins = (request,response,next) => {
+    User.findAll({where: {admin: true}}).then(docs=>{
+        response.send(docs)
+        next()
+    }).catch(err=>{
+        response.status(500).json(err)
+    })
+}
 module.exports = {
     makeAdmin,
     signup,
