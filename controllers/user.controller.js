@@ -87,16 +87,16 @@ const autoLogin = async (req,res,next) =>{
 const makeAdmin = async (request,response,next) => {
     try{
         const {admin} = request.user
-        const id = request.params.id
         if(! admin){
             return response.status(401).send({
                 message: 'unauthorized request'
             })
         }
-        const user = await User.findByPk(id)
+        const {email} = request.body
+        const user = await User.findOne({where: {email}})
         if(! user){
             return response.status(404).send({
-                message: `user with id ${id} not found`
+                message: `user with email ${email} not found`
             })
         }
         user.admin = true
