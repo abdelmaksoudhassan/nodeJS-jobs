@@ -321,5 +321,6 @@ module.exports = {
     updateEmail,
     updatePassword,
     completeData,
-    profile
+    profile,
+    getAdmins
 }
