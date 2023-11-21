@@ -107,9 +107,8 @@ const makeAdmin = async (request,response,next) => {
             deleteFile(userExtraData.cv)
             await userExtraData.destroy()
         }
-        response.send({
-            message: `user updated to be admin`
-        })
+        response.send(user)
+        next()
     }catch(err){
         response.status(500).send(err)
     }
