@@ -197,7 +197,6 @@ const updatePassword = async (request,response,next) => {
             })
         }
         user.password = newPassword
-        console.log(newPassword,oldPassword,user.password)
         await user.save()
         response.json({
             message: 'password updated'
