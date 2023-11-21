@@ -4,6 +4,7 @@ const {mapError} = require('../helpers/helpers')
 const getCategories = (request,response,next) => {
         Category.findAll().then(docs=>{
             response.json(docs)
+            next()
         }).catch(err=>{
             response.status(500).json(err)
         })
