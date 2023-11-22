@@ -14,8 +14,8 @@ const Category = sequelize.define('category',{
         unique: true,
         validate:{
             len: {
-                args: [3,10],
-                msg: 'title must be 3-10 letters'
+                args: [3,25],
+                msg: 'title must be 3-25 letters'
             },
             letterSpace(value){
                 if(! /^[a-zA-Z\s]*$/.test(value)){

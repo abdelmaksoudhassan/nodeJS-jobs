@@ -36,8 +36,8 @@ User.init({
                 msg: 'password can\t be empty'
             },
             len:{
-                args: [8,15],
-                msg: 'password must be from 8 to 15 digits'
+                args: [8,25],
+                msg: 'password must be from 8 to 25 digits'
             },
             notNull:{
                 msg: 'password is required'
@@ -56,8 +56,8 @@ User.init({
                 msg: 'first name supports only letters'
             },
             len: {
-                args: [3,20],
-                msg: 'first name must be 3-20 letters'
+                args: [3,25],
+                msg: 'first name must be 3-25 letters'
             },
             notEmpty:{
                 msg: 'first name can\t be empty'
@@ -75,8 +75,8 @@ User.init({
                 msg: 'last name supports only letters'
             },
             len: {
-                args: [3,20],
-                msg: 'last name must be 3-20 letters'
+                args: [3,25],
+                msg: 'last name must be 3-25 letters'
             },
             notEmpty:{
                 msg: 'last name can\t be empty'

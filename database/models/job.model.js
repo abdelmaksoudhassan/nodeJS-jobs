@@ -19,8 +19,8 @@ const Job = sequelize.define('job',{
                 msg: 'title can\t be empty'
             },
             len: {
-                args: [5,20],
-                msg: 'title must be 5-20 letters'
+                args: [5,25],
+                msg: 'title must be 5-25 letters'
             },
             letterSpace(value){
                 if(! /^[a-zA-Z\s]*$/.test(value)){
